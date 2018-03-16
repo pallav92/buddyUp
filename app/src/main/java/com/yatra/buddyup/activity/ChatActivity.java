@@ -14,9 +14,9 @@ import com.yatra.buddyup.model.User;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
 
-    private final String TAG = MainActivity.class.getSimpleName();
+    private final String TAG = ChatActivity.class.getSimpleName();
     FirebaseDatabase database;
     private DatabaseReference mDatabaseRef;
 
@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         mDatabaseRef = database.getReference("message");
 
         mDatabaseRef.setValue("Hello, World!");
+
+//        writeNewUser("Pallav","Pallav",)
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
