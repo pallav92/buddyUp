@@ -1,4 +1,4 @@
-package com.yatra.buddyup.Utils;
+package com.yatra.buddyup.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -23,10 +23,12 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>{
     List<Message> messages;
     private LayoutInflater inflater;
     private Context context;
+    private String ownerName;
 
-    public ChatsAdapter(Context context, List<Message> messages) {
+    public ChatsAdapter(Context context, List<Message> messages, String ownerName) {
         this.context = context;
         this.messages = messages;
+        this.ownerName = ownerName;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -44,7 +46,7 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>{
 
     @Override
     public int getItemViewType(int position) {
-        if(messages.get(position).isSender()) {
+        if(!messages.get(position).getUser().getName().equals(ownerName)) {
             return 0;
         }else {
             return 1;
