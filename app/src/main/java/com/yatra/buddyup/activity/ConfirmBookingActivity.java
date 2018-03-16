@@ -37,6 +37,7 @@ public class ConfirmBookingActivity extends AppCompatActivity {
 
                 Dialog dialog = builder.create();
                 dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+                dialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog_shape);
 
                 dialog.show();
             }
