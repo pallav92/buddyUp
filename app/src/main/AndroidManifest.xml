@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
-            android:name=".activity.OnBoardingActivityNew"
+            android:name=".activity.OnBoardingActivity"
             android:label="Hello Weird"
             android:theme="@style/AppTheme">
             <!--<intent-filter>
@@ -19,14 +19,9 @@
             </intent-filter>-->
         </activity>
 
-        <activity android:name=".activity.MainActivityNew"
-            android:theme="@style/Theme.AppCompat.Light">
-
-        </activity>
-
         <activity
             android:name=".activity.ChatActivity"
-            android:theme="@style/Theme.AppCompat.Light">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
