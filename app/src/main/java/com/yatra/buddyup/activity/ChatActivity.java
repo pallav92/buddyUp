@@ -54,9 +54,11 @@ public class ChatActivity extends AppCompatActivity {
 
         writeNewUser("pallav619@gmail.com","Pallav","pallav619@gmail.com",interest);
 
-        chatRoom = new ChatRoom("xyz",null,null);
 
-        enterNewMessage(new Message("Hi", new User("pallav619@gmail.com","Pallav","pallav619@gmail.com", "https://vignette.wikia.nocookie.net/batman/images/8/8f/Christian_Bale_as_The_Dark_Knight.jpg/revision/latest?cb=20140208170841", interest),System.currentTimeMillis(), true),chatRoom);
+
+         chatRoom = new ChatRoom("xyz",null,null);
+
+        enterNewMessage(new Message("Hi", new User("pallav619@gmail.com","Pallav","pallav619@gmail.com","https://vignette.wikia.nocookie.net/batman/images/8/8f/Christian_Bale_as_The_Dark_Knight.jpg/revision/latest?cb=20140208170841",interest),System.currentTimeMillis(), true),chatRoom);
 
         mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).addValueEventListener(new ValueEventListener() {
             @Override
