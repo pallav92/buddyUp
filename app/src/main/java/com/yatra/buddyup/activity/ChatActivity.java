@@ -40,7 +40,11 @@ public class ChatActivity extends AppCompatActivity {
 
         writeNewUser("pallav619@gmail.com","Pallav","pallav619@gmail.com",interest);
 
-        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+
+
+        ChatRoom chatRoom = new ChatRoom("xyz",null,null);
+
+        mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -59,13 +63,14 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void enterNewMessage(Message message, ChatRoom chatRoom){
-
+        mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).setValue(chatRoom);
+        mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).child("messages").setValue(message);
     }
 
 
     private void writeNewUser( String userId,String name, String email, List<String> interests) {
-        User user = new User(userId,name,email, "", interests);
-
-        mDatabaseRef.child("users").child(userId).setValue(user);
+        User user = new User(userId,name,email,interests);
+        String key = mDatabaseRef.child("users").push().getKey();
+        mDatabaseRef.child("/users").child(key).setValue(user);
     }
 }
