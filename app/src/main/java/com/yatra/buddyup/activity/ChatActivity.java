@@ -9,7 +9,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.yatra.buddyup.R;
 import com.yatra.buddyup.model.ChatRoom;
 import com.yatra.buddyup.model.Message;
 import com.yatra.buddyup.model.User;
@@ -65,7 +64,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
     private void writeNewUser( String userId,String name, String email, List<String> interests) {
-        User user = new User(userId,name,email,interests);
+        User user = new User(userId,name,email, "", interests);
 
         mDatabaseRef.child("users").child(userId).setValue(user);
     }

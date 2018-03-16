@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:id="@+id/msg"
         android:paddingBottom="16dp"
         android:paddingEnd="8dp"
         android:paddingStart="24dp"
@@ -25,12 +26,12 @@
     <LinearLayout
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/img">
+        android:layout_alignParentEnd="true">
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:id="@+id/img"
             android:src="@drawable/girl1"
             app:civ_border_width="1dp"
             app:civ_border_color="@color/colorPrimaryDark"/>

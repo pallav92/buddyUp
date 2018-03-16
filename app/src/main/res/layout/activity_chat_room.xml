@@ -104,20 +104,6 @@
             android:background="@color/light_gray"
             android:padding="16dp"
             android:layout_above="@id/send_msg_view">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <include layout="@layout/sender_msg" />
-
-                <include layout="@layout/receiver_msg" />
-
-                <include layout="@layout/sender_msg" />
-
-                <include layout="@layout/receiver_msg" />
-
-            </LinearLayout>
         </android.support.v7.widget.RecyclerView>
 
         <LinearLayout

@@ -9,12 +9,14 @@ public class Message {
     private String messageText;
     private User user;
     private long timestamp;
+    private boolean isSender;
 
 
-    public Message(String messageText, User user, long timestamp) {
+    public Message(String messageText, User user, long timestamp, boolean isSender) {
         this.messageText = messageText;
         this.user = user;
         this.timestamp = timestamp;
+        this.isSender = isSender;
     }
 
     public Message(){
@@ -43,5 +45,13 @@ public class Message {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public boolean isSender() {
+        return isSender;
+    }
+
+    public void setSender(boolean sender) {
+        isSender = sender;
     }
 }
