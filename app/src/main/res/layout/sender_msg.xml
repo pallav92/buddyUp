@@ -25,7 +25,7 @@
             android:paddingEnd="8dp"
             android:paddingStart="30dp"
             android:text="Hello"
-            android:textColor="#111"
+            android:textColor="@color/message_color"
             android:textSize="16sp" />
 
         <LinearLayout

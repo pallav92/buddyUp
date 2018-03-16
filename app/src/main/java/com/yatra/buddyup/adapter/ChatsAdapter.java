@@ -1,6 +1,9 @@
 package com.yatra.buddyup.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +15,15 @@ import com.bumptech.glide.Glide;
 import com.yatra.buddyup.R;
 import com.yatra.buddyup.model.Message;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
 /**
  * @author Sumit Kumar
  */
 
-public class ChatsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class ChatsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     List<Message> messages;
     private LayoutInflater inflater;
@@ -49,9 +54,9 @@ public class ChatsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public int getItemViewType(int position) {
-        if(messages.get(position).getUser().getName().equals("YATRA")) {
+        if (messages.get(position).getUser().getName().equals("YATRA")) {
             return 2;
-        }else {
+        } else {
             if (!messages.get(position).getUser().getName().equals(ownerName)) {
                 return 0;
             } else {
@@ -62,12 +67,29 @@ public class ChatsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof ViewHolder) {
-            ((ViewHolder)holder).msg.setText(messages.get(position).getMessageText());
-            if (messages.get(position).getUser() != null) {
-                Glide.with(context).load(messages.get(position).getUser().getImgURL()).into(((ViewHolder)holder).img);
+        if (holder instanceof ViewHolder) {
+            final String message = messages.get(position).getMessageText();
+            if (StringUtils.isNumeric(message)) {
+                ((ViewHolder) holder).msg.setTextColor(ContextCompat.getColor(context, R.color.colorBlue));
+                ((ViewHolder) holder).msg.setText(message);
+                ((ViewHolder) holder).msg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse("tel:" + message));
+                        context.startActivity(intent);
+                    }
+                });
+            } else {
+                ((ViewHolder) holder).msg.setTextColor(ContextCompat.getColor(context, R.color.message_color));
+                ((ViewHolder) holder).msg.setText(messages.get(position).getMessageText());
+                ((ViewHolder) holder).msg.setOnClickListener(null);
             }
-        }else {
+
+            if (messages.get(position).getUser() != null) {
+                Glide.with(context).load(messages.get(position).getUser().getImgURL()).into(((ViewHolder) holder).img);
+            }
+        } else {
 
         }
     }
