@@ -105,6 +105,30 @@ public class ChatActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+        mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                usersList.clear();
+                usersList.add(user);
+
+                for (DataSnapshot value : dataSnapshot.getChildren()) {
+                    if (value != null) {
+                        User user = value.getValue(User.class);
+                        if (user != null ) {
+                            usersList.add(user);
+                            chatUserAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+                chatUserAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
     }
 
     private void addUserIdInChatRoom(String interest) {
