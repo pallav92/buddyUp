@@ -113,7 +113,7 @@ public class ChatActivity extends AppCompatActivity {
         String key = mDatabase.child("chatrooms").child(interest).child("users").push().getKey();
         ArrayList ar = new ArrayList<String>();
         ar.add(interest);
-        mDatabase.child("/chatrooms").child(interest).child("users/" + key).setValue(
+        mDatabase.child("/chatrooms").child(interest).child("users").child(BuddyConstants.userName).setValue(
                 new User(BuddyConstants.userName, BuddyConstants.userName, BuddyConstants.userEmail, BuddyConstants.userImage, ar));
     }
 
