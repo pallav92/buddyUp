@@ -147,7 +147,7 @@
                 android:onClick="onClickOFInterest"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:tag="politics">
+                android:tag="Politics">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -173,7 +173,7 @@
                 android:onClick="onClickOFInterest"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:tag="pets">
+                android:tag="Pets">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -225,7 +225,7 @@
                 android:onClick="onClickOFInterest"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:tag="event">
+                android:tag="Event">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -250,7 +250,7 @@
                 android:onClick="onClickOFInterest"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:tag="adventure">
+                android:tag="Adventure">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
