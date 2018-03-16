@@ -1,0 +1,275 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:columnCount="3"
+            android:orientation="horizontal"
+            android:rowCount="3">
+
+            <LinearLayout
+                android:id="@+id/food"
+                android:layout_width="130dp"
+                android:layout_height="160dp"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:layout_row="0"
+                android:elevation="3dp"
+                android:gravity="center"
+                android:onClick="onClickOFInterest"
+                android:orientation="vertical"
+
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:src="@drawable/pets" />
+
+                <TextView
+
+                    android:id="@+id/tvInterest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Food"
+                    android:textColor="#666666"
+                    android:textSize="23sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/books"
+                android:layout_width="130dp"
+                android:layout_height="160dp"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:gravity="center"
+
+                android:onClick="onClickOFInterest"
+
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:src="@drawable/books" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Books"
+                    android:textColor="#666666"
+                    android:textSize="23sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/Bollywood"
+                android:layout_width="130dp"
+                android:layout_height="160dp"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:gravity="center"
+                android:onClick="onClickOFInterest"
+
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:src="@drawable/movies" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Movies"
+                    android:textColor="#666666"
+                    android:textSize="23sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/Travel"
+                android:layout_width="130dp"
+                android:layout_height="160dp"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:gravity="center"
+                android:onClick="onClickOFInterest"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:src="@drawable/travel" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Travel"
+                    android:textColor="#666666"
+                    android:textSize="23sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/politics"
+                android:layout_width="130dp"
+                android:layout_height="160dp"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:gravity="center"
+                android:onClick="onClickOFInterest"
+
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:src="@drawable/politics" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Politics"
+                    android:textColor="#666666"
+                    android:textSize="23sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/OutDoor"
+                android:layout_width="130dp"
+                android:layout_height="160dp"
+                android:layout_column="2"
+                android:layout_row="1"
+                android:gravity="center"
+                android:onClick="onClickOFInterest"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:src="@drawable/pets" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pets"
+                    android:textColor="#666666"
+                    android:textSize="23sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Health"
+                android:layout_width="130dp"
+                android:layout_height="160dp"
+                android:layout_column="0"
+                android:layout_row="2"
+                android:gravity="center"
+                android:onClick="onClickOFInterest"
+
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:src="@drawable/health" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Health"
+                    android:textColor="#666666"
+                    android:textSize="23sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/event"
+                android:layout_width="130dp"
+                android:layout_height="160dp"
+                android:layout_column="1"
+                android:layout_row="2"
+                android:gravity="center"
+                android:onClick="onClickOFInterest"
+
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:src="@drawable/events" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Event"
+                    android:textColor="#666666"
+                    android:textSize="23sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/adventure"
+                android:layout_width="130dp"
+                android:layout_height="160dp"
+                android:layout_column="2"
+                android:layout_row="2"
+                android:onClick="onClickOFInterest"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:src="@drawable/outdoor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adventure"
+                    android:textColor="#666666"
+                    android:textSize="23sp" />
+            </LinearLayout>
+
+        </GridLayout>
+
+        <!--<TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="Just Make Freinds" />-->
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary"
+            android:onClick="onClickOfSubmit"
+            android:text="SUBMIT"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</ScrollView>

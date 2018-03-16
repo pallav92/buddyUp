@@ -1,9 +1,9 @@
 package com.yatra.buddyup.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.chyrta.onboarder.OnboarderActivity;
 import com.chyrta.onboarder.OnboarderPage;
@@ -37,7 +37,7 @@ public class OnBoardingActivity extends OnboarderActivity {
 
         onboarderPage3.setTitleColor(R.color.white);
         onboarderPage3.setDescriptionColor(R.color.white);
-        onboarderPage3.setBackgroundColor(R.color.colorPink);
+        onboarderPage3.setBackgroundColor(R.color.colorTeal);
 
         onboarderPage4.setTitleColor(R.color.white);
         onboarderPage4.setDescriptionColor(R.color.white);
@@ -64,6 +64,6 @@ public class OnBoardingActivity extends OnboarderActivity {
 
     @Override
     public void onFinishButtonPressed() {
-        Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, ConfirmBookingActivity.class));
     }
 }

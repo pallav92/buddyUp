@@ -58,7 +58,7 @@ public class ChatActivity extends AppCompatActivity {
         interest.add("Cricket");
 
         writeNewUser("sumit.kumar@gmail.com","Sumit Kumar","sumit.kumar@gmail.com",interest);
-        initializeUI();
+initializeUI();
         chatRoom = new ChatRoom("xyz",null,null);
 
         mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).addValueEventListener(new ValueEventListener() {
