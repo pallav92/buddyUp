@@ -23,13 +23,15 @@
         <activity
             android:name=".activity.OnBoardingActivity"
             android:label="Hello Weird"
-            android:noHistory="true"
-            android:theme="@style/AppTheme">
+            android:noHistory="true"android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>
