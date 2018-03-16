@@ -90,7 +90,7 @@ public class ChatsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 Glide.with(context).load(messages.get(position).getUser().getImgURL()).into(((ViewHolder) holder).img);
             }
         } else {
-
+            ((ViewHolderForYatra) holder).msg.setText(messages.get(position).getMessageText());
         }
     }
 

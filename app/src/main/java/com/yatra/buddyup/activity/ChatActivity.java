@@ -73,6 +73,8 @@ public class ChatActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 messages.clear();
                 usersList.clear();
+                usersList.add(user);
+                chatUserAdapter.notifyDataSetChanged();
                 for (DataSnapshot value : dataSnapshot.getChildren()) {
                     if (value != null) {
                         Iterator<DataSnapshot> it = value.getChildren().iterator();
@@ -86,6 +88,8 @@ public class ChatActivity extends AppCompatActivity {
                         }
                     }
                 }
+                String msg = "Welcome to Hyderabad, Let's make more of these 3 hours than just strolling around. Meet and eat with an amazing dining experience at ABC restaurant at the second level. Use YATRA100 to avail 100/- off. Hope you have a great time.";
+                messages.add(0, new Message(msg, new User("", "YATRA", "", "", null), System.currentTimeMillis(), true));
                 chatsAdapter.notifyDataSetChanged();
                 hideKeyboard();
                 playNotificationSound();
@@ -97,9 +101,6 @@ public class ChatActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-
-
-
     }
 
     private boolean isUserPresent(User user) {
