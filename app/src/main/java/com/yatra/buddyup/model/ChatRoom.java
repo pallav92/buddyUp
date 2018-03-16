@@ -1,11 +1,16 @@
 package com.yatra.buddyup.model;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by YATRAONLINE\v-pallav.srivastava on 16/3/18.
  */
-
+@IgnoreExtraProperties
 public class ChatRoom {
 
     private String chatRoomId;
@@ -41,6 +46,16 @@ public class ChatRoom {
     public String getChatRoomId() {
         return chatRoomId;
     }
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("chatRoomId", chatRoomId);
+        result.put("userIdList", userIDList);
+        result.put("messageList", messageList);
+        return result;
+    }
+
+
 
     public void setChatRoomId(String chatRoomId) {
         this.chatRoomId = chatRoomId;
