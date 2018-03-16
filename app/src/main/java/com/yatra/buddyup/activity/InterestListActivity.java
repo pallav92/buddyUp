@@ -52,6 +52,11 @@ public class InterestListActivity extends AppCompatActivity {
     }
 
     public void onClickOfSubmit(View view) {
+        if (lastSelectedView == null) {
+            Toast.makeText(this, "Please choose one interest", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         LinearLayout selectedView = (LinearLayout) lastSelectedView;
         String selectedInterest = ((String) lastSelectedView.getTag());
         submitUserInterest(selectedInterest);
@@ -60,11 +65,6 @@ public class InterestListActivity extends AppCompatActivity {
     }
 
     private void submitUserInterest(String interest) {
-        if (lastSelectedView == null) {
-            Toast.makeText(this, "Please choose one interest", Toast.LENGTH_LONG).show();
-            return;
-        }
-
         Intent chatIntent = new Intent(this, ChatActivity.class);
         chatIntent.putExtra("interest", interest);
         startActivity(chatIntent);
