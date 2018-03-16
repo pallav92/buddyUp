@@ -22,7 +22,6 @@
             android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".activity.OnBoardingActivity"
-            android:label="Hello Weird"
             android:noHistory="true" android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

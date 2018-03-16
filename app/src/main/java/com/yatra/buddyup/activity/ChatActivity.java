@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +38,7 @@ public class ChatActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
     private List<Message> messages = new ArrayList<>();
     private List<User> usersList = new ArrayList<>();
-
+    TextView tvChatTitle;
     RecyclerView chats, users;
     ChatsAdapter chatsAdapter;
     ChatUserAdapter chatUserAdapter;
@@ -48,17 +49,20 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+        tvChatTitle = findViewById(R.id.tv_chat_title);
 
+String interestChoosen = getIntent().getStringExtra("interest")!=null?getIntent().getStringExtra("interest"):"xyz";
         database = FirebaseDatabase.getInstance();
         mDatabaseRef = database.getReference("main");
 
         ArrayList<String> interest = new ArrayList<>();
-        interest.add("Travel");
-        interest.add("Books");
-        interest.add("Cricket");
+        interest.add(interestChoosen);
+        tvChatTitle.setText(interestChoosen + " lovers");
+       /* interest.add("Books");
+        interest.add("Cricket");*/
 
-        writeNewUser("sumit.kumar@gmail.com","Sumit Kumar","sumit.kumar@gmail.com",interest);
-        initializeUI();
+        writeNewUser("pallav619@gmail.com","Pallav","pallav619@gmail.com",interest);
+initializeUI();
         chatRoom = new ChatRoom("xyz",null,null);
 
         mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).addValueEventListener(new ValueEventListener() {
@@ -66,10 +70,10 @@ public class ChatActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 messages.clear();
                 usersList.clear();
-                for(DataSnapshot value : dataSnapshot.getChildren()) {
-                    if(value != null) {
+                for (DataSnapshot value : dataSnapshot.getChildren()) {
+                    if (value != null) {
                         Iterator<DataSnapshot> it = value.getChildren().iterator();
-                        while(it.hasNext()) {
+                        while (it.hasNext()) {
                             Message message = it.next().getValue(Message.class);
                             if(!isUserPresent(message.getUser())) {
                                 usersList.add(message.getUser());
@@ -90,6 +94,9 @@ public class ChatActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+
+
+
     }
 
     private boolean isUserPresent(User user) {
@@ -121,7 +128,7 @@ public class ChatActivity extends AppCompatActivity {
     private void initializeUI() {
         chats = findViewById(R.id.chats);
         chats.setLayoutManager(new LinearLayoutManager(this));
-        chatsAdapter = new ChatsAdapter(this, messages,user.getName());
+        chatsAdapter = new ChatsAdapter(this, messages, user.getName());
         chats.setAdapter(chatsAdapter);
 
         users = findViewById(R.id.users);
@@ -136,7 +143,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String text = editMsg.getText().toString().trim();
-                if(!text.equals("")) {
+                if (!text.equals("")) {
                     Message message = new Message(text, user, System.currentTimeMillis(), true);
                     sendMsgToServer(message);
                     editMsg.setText("");
@@ -149,13 +156,13 @@ public class ChatActivity extends AppCompatActivity {
         enterNewMessage(message, chatRoom);
     }
 
-    private void enterNewMessage(Message message, ChatRoom chatRoom){
+    private void enterNewMessage(Message message, ChatRoom chatRoom) {
         String key = mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).push().getKey();
-        mDatabaseRef.child("/chatrooms").child(chatRoom.getChatRoomId()).child("messages/"+key).setValue(message);
+        mDatabaseRef.child("/chatrooms").child(chatRoom.getChatRoomId()).child("messages/" + key).setValue(message);
     }
 
-    private void writeNewUser( String userId,String name, String email, List<String> interests) {
-        user = new User(userId,name,email, "https://vignette.wikia.nocookie.net/batman/images/8/8f/Christian_Bale_as_The_Dark_Knight.jpg/revision/latest?cb=20140208170841", interests);
+    private void writeNewUser(String userId, String name, String email, List<String> interests) {
+        user = new User(userId, name, email, "https://i.pinimg.com/originals/86/17/f3/8617f3d63e9c58807430ee02d7b095f6.jpg", interests);
         /*String key = mDatabaseRef.child("users").push().getKey();
         user.setUserId(key);*/
         mDatabaseRef.child("/users").child(user.getName()).setValue(user);
@@ -170,14 +177,14 @@ public class ChatActivity extends AppCompatActivity {
         };
 
         List<Message> list = new ArrayList<>();
-        for(int i = 1; i <= 10; i++) {
-            int rand = (int)(100 * Math.random());
+        for (int i = 1; i <= 10; i++) {
+            int rand = (int) (100 * Math.random());
             Message message = new Message();
             message.setMessageText("Hello guys, How are you all Hello guys, How are you all Hello guys, How are you all Hello guys, How are you all");
             message.setUser(new User("", "", "", imgs[rand % 3], null));
-            if(rand % i == 0) {
+            if (rand % i == 0) {
                 message.setSender(true);
-            }else {
+            } else {
                 message.setSender(false);
             }
             list.add(message);

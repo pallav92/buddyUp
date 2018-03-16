@@ -60,8 +60,7 @@ public class InterestListActivity extends AppCompatActivity {
         LinearLayout selectedView = (LinearLayout) lastSelectedView;
         String selectedInterest = ((String) lastSelectedView.getTag());
         submitUserInterest(selectedInterest);
-        Intent intent = new Intent(this, ChatActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     private void submitUserInterest(String interest) {
