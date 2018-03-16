@@ -26,6 +26,7 @@ import com.yatra.buddyup.adapter.ChatsAdapter;
 import com.yatra.buddyup.model.ChatRoom;
 import com.yatra.buddyup.model.Message;
 import com.yatra.buddyup.model.User;
+import com.yatra.buddyup.util.BuddyConstants;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -44,6 +45,7 @@ public class ChatActivity extends AppCompatActivity {
     ChatUserAdapter chatUserAdapter;
     ChatRoom chatRoom;
     User user;
+    private String interestChoosen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,24 +53,29 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
         tvChatTitle = findViewById(R.id.tv_chat_title);
 
-        String interestChoosen = getIntent().getStringExtra("interest")!=null?getIntent().getStringExtra("interest"):"xyz";
+        interestChoosen = getIntent().getStringExtra("interest") != null ? getIntent().getStringExtra("interest") : "xyz";
         database = FirebaseDatabase.getInstance();
+
         mDatabaseRef = database.getReference("main");
 
         ArrayList<String> interest = new ArrayList<>();
         interest.add(interestChoosen);
+        addUserIdInChatRoom(interestChoosen);
         tvChatTitle.setText(interestChoosen + " lovers");
        /* interest.add("Books");
         interest.add("Cricket");*/
 
-        writeNewUser("sumit.kumar@gmail.com","Sumit Kumar","sumit.kumar@gmail.com",interest);
+        writeNewUser("sumit.kumar@gmail.com", "Sumit Kumar", "sumit.kumar@gmail.com", interest);
         initializeUI();
-        chatRoom = new ChatRoom(interestChoosen,null,null);
+        chatRoom = new ChatRoom(interestChoosen, null, null);
 
         usersList.add(user);
         chatUserAdapter.notifyDataSetChanged();
+        writeNewUser(BuddyConstants.userEmail, BuddyConstants.userName, BuddyConstants.userEmail, interest);
+        initializeUI();
+        chatRoom = new ChatRoom(interestChoosen, null, null);
 
-        mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).addValueEventListener(new ValueEventListener() {
+        mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).child("messages").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 messages.clear();
@@ -77,15 +84,12 @@ public class ChatActivity extends AppCompatActivity {
                 chatUserAdapter.notifyDataSetChanged();
                 for (DataSnapshot value : dataSnapshot.getChildren()) {
                     if (value != null) {
-                        Iterator<DataSnapshot> it = value.getChildren().iterator();
-                        while (it.hasNext()) {
-                            Message message = it.next().getValue(Message.class);
-                            if(!isUserPresent(message.getUser())) {
-                                usersList.add(message.getUser());
-                                chatUserAdapter.notifyDataSetChanged();
-                            }
-                            messages.add(message);
+                        Message message = value.getValue(Message.class);
+                        if (message != null && !isUserPresent(message.getUser())) {
+                            usersList.add(message.getUser());
+                            chatUserAdapter.notifyDataSetChanged();
                         }
+                        messages.add(message);
                     }
                 }
                 String msg = "Welcome to Hyderabad, Let's make more of these 3 hours than just strolling around. Meet and eat with an amazing dining experience at ABC restaurant at the second level. Use YATRA100 to avail 100/- off. Hope you have a great time.";
@@ -103,10 +107,21 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    private void addUserIdInChatRoom(String interest) {
+
+        DatabaseReference mDatabase = database.getReference("main");
+        String key = mDatabase.child("chatrooms").child(interest).child("users").push().getKey();
+        ArrayList ar = new ArrayList<String>();
+        ar.add(interest);
+        mDatabase.child("/chatrooms").child(interest).child("users/" + key).setValue(
+                new User(BuddyConstants.userName, BuddyConstants.userName, BuddyConstants.userEmail, BuddyConstants.userImage, ar));
+    }
+
+
     private boolean isUserPresent(User user) {
         boolean isPresent = false;
-        for(int i = 0; i < usersList.size(); i++) {
-            if(usersList.get(i).getUserId().equals(user.getUserId())) {
+        for (int i = 0; i < usersList.size(); i++) {
+            if (usersList.get(i).getUserId().equals(user.getUserId())) {
                 isPresent = true;
                 break;
             }
@@ -119,7 +134,7 @@ public class ChatActivity extends AppCompatActivity {
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    private void playNotificationSound(){
+    private void playNotificationSound() {
         try {
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
@@ -165,8 +180,9 @@ public class ChatActivity extends AppCompatActivity {
         mDatabaseRef.child("/chatrooms").child(chatRoom.getChatRoomId()).child("messages/" + key).setValue(message);
     }
 
+
     private void writeNewUser(String userId, String name, String email, List<String> interests) {
-        user = new User(userId, name, email, "https://vignette.wikia.nocookie.net/batman/images/8/8f/Christian_Bale_as_The_Dark_Knight.jpg/revision/latest?cb=20140208170841", interests);
+        user = new User(userId, name, email, BuddyConstants.userImage, interests);
         /*String key = mDatabaseRef.child("users").push().getKey();
         user.setUserId(key);*/
         mDatabaseRef.child("/users").child(user.getName()).setValue(user);

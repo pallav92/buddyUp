@@ -11,8 +11,11 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.yatra.buddyup.R;
+import com.yatra.buddyup.model.User;
+import com.yatra.buddyup.util.BuddyConstants;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class InterestListActivity extends AppCompatActivity {
 
@@ -59,6 +62,7 @@ public class InterestListActivity extends AppCompatActivity {
         LinearLayout selectedView = (LinearLayout) lastSelectedView;
         String selectedInterest = ((String) lastSelectedView.getTag());
         submitUserInterest(selectedInterest);
+
         finish();
     }
 
@@ -67,4 +71,7 @@ public class InterestListActivity extends AppCompatActivity {
         chatIntent.putExtra("interest", interest);
         startActivity(chatIntent);
     }
+
+
+
 }
