@@ -79,16 +79,14 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 messages.clear();
-                usersList.clear();
-                usersList.add(user);
                 chatUserAdapter.notifyDataSetChanged();
                 for (DataSnapshot value : dataSnapshot.getChildren()) {
                     if (value != null) {
                         Message message = value.getValue(Message.class);
-                        if (message != null && !isUserPresent(message.getUser())) {
+                        /*if (message != null && !isUserPresent(message.getUser())) {
                             usersList.add(message.getUser());
                             chatUserAdapter.notifyDataSetChanged();
-                        }
+                        }*/
                         messages.add(message);
                     }
                 }
@@ -109,7 +107,6 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 usersList.clear();
-                usersList.add(user);
 
                 for (DataSnapshot value : dataSnapshot.getChildren()) {
                     if (value != null) {
