@@ -11,12 +11,14 @@ public class User {
     private String userId;
     private String name;
     private String email;
+    private String imgURL;
     private List<String> interests;
 
-    public User(String userId, String name, String email, List<String> interests) {
+    public User(String userId, String name, String email, String imgURL, List<String> interests) {
         this.userId = userId;
         this.name = name;
         this.email = email;
+        this.imgURL = imgURL;
         this.interests = interests;
     }
 
@@ -57,5 +59,13 @@ public class User {
 
     public void setInterests(List<String> interests) {
         this.interests = interests;
+    }
+
+    public String getImgURL() {
+        return imgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
     }
 }
