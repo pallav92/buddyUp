@@ -54,7 +54,9 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ChatsAdapter.ViewHolder holder, int position) {
         holder.msg.setText(messages.get(position).getMessageText());
-        Glide.with(context).load(messages.get(position).getUser().getImgURL()).into(holder.img);
+        if(messages.get(position).getUser() != null) {
+            Glide.with(context).load(messages.get(position).getUser().getImgURL()).into(holder.img);
+        }
     }
 
     @Override

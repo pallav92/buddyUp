@@ -21,6 +21,7 @@ import com.yatra.buddyup.model.Message;
 import com.yatra.buddyup.model.User;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -60,11 +61,16 @@ public class ChatActivity extends AppCompatActivity {
         mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ChatRoom value = dataSnapshot.getValue(ChatRoom.class);
-                if(value != null) {
-                    messages = value.getMessageList();
-                    chatsAdapter.notifyDataSetChanged();
+                messages.clear();
+                for(DataSnapshot value : dataSnapshot.getChildren()) {
+                    if(value != null) {
+                        Iterator<DataSnapshot> it = value.getChildren().iterator();
+                        while(it.hasNext()) {
+                            messages.add(it.next().getValue(Message.class));
+                        }
+                    }
                 }
+                chatsAdapter.notifyDataSetChanged();
             }
 
             @Override
