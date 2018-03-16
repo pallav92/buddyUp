@@ -4,8 +4,8 @@ import android.content.Context;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,7 +29,6 @@ import com.yatra.buddyup.model.User;
 import com.yatra.buddyup.util.BuddyConstants;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
@@ -58,7 +57,7 @@ public class ChatActivity extends AppCompatActivity {
 
         mDatabaseRef = database.getReference("main");
 
-        ArrayList<String> interest = new ArrayList<>();
+        final ArrayList<String> interest = new ArrayList<>();
         interest.add(interestChoosen);
         addUserIdInChatRoom(interestChoosen);
         tvChatTitle.setText(interestChoosen + " lovers");
@@ -90,7 +89,14 @@ public class ChatActivity extends AppCompatActivity {
                         messages.add(message);
                     }
                 }
-                String msg = "Welcome to Hyderabad, Let's make more of these 3 hours than just strolling around. Meet and eat with an amazing dining experience at ABC restaurant at the second level. Use YATRA100 to avail 100/- off. Hope you have a great time.";
+
+                String msg = BuddyConstants.foodMessage;
+                if (interestChoosen.toLowerCase().contains("food")) {
+                    msg = BuddyConstants.foodMessage;
+                } else if (interestChoosen.toLowerCase().contains("books")) {
+                    msg = BuddyConstants.booksMessage;
+                }
+
                 messages.add(0, new Message(msg, new User("", "YATRA", "", "", null), System.currentTimeMillis(), true));
                 chatsAdapter.notifyDataSetChanged();
                 hideKeyboard();
@@ -111,7 +117,7 @@ public class ChatActivity extends AppCompatActivity {
                 for (DataSnapshot value : dataSnapshot.getChildren()) {
                     if (value != null) {
                         User user = value.getValue(User.class);
-                        if (user != null ) {
+                        if (user != null) {
                             usersList.add(user);
                             chatUserAdapter.notifyDataSetChanged();
                         }
