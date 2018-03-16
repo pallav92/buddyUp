@@ -41,6 +41,14 @@
             android:theme="@style/Theme.AppCompat.Light">
 
         </activity>
+
+        <activity
+            android:name=".activity.ChatActivity"
+            android:theme="@style/Theme.AppCompat.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+        </activity>
     </application>
 
 </manifest>

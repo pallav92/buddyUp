@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.yatra.buddyup.R;
-import com.yatra.buddyup.Utils.ChatsAdapter;
+import com.yatra.buddyup.adapter.ChatsAdapter;
 import com.yatra.buddyup.model.Message;
 import com.yatra.buddyup.model.User;
 
@@ -29,8 +29,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         chats = findViewById(R.id.chats);
         chats.setLayoutManager(new LinearLayoutManager(this));
 
-        ChatsAdapter chatsAdapter = new ChatsAdapter(this, getDummyMessages());
-        chats.setAdapter(chatsAdapter);
+       /* ChatsAdapter chatsAdapter = new ChatsAdapter(this, getDummyMessages(),user.getName());
+        chats.setAdapter(chatsAdapter);*/
 
         final EditText editMsg = findViewById(R.id.et_msg);
         ImageView sendMsg = findViewById(R.id.send);

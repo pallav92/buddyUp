@@ -15,7 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.yatra.buddyup.R;
-import com.yatra.buddyup.Utils.ChatsAdapter;
+import com.yatra.buddyup.adapter.ChatsAdapter;
 import com.yatra.buddyup.model.ChatRoom;
 import com.yatra.buddyup.model.Message;
 import com.yatra.buddyup.model.User;
@@ -23,7 +23,6 @@ import com.yatra.buddyup.model.User;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -42,7 +41,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
 
-        initializeUI();
+
 
         database = FirebaseDatabase.getInstance();
         mDatabaseRef = database.getReference("main");
@@ -53,12 +52,10 @@ public class ChatActivity extends AppCompatActivity {
         interest.add("Cricket");
 
         writeNewUser("pallav619@gmail.com","Pallav","pallav619@gmail.com",interest);
+initializeUI();
+        chatRoom = new ChatRoom("xyz",null,null);
 
-
-
-         chatRoom = new ChatRoom("xyz",null,null);
-
-        enterNewMessage(new Message("Hi", new User("pallav619@gmail.com","Pallav","pallav619@gmail.com","https://vignette.wikia.nocookie.net/batman/images/8/8f/Christian_Bale_as_The_Dark_Knight.jpg/revision/latest?cb=20140208170841",interest),System.currentTimeMillis(), true),chatRoom);
+//        enterNewMessage(new Message("Hi", new User("pallav619@gmail.com","Pallav","pallav619@gmail.com","https://i.pinimg.com/originals/86/17/f3/8617f3d63e9c58807430ee02d7b095f6.jpg",interest),System.currentTimeMillis(), true),chatRoom);
 
         mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -86,7 +83,7 @@ public class ChatActivity extends AppCompatActivity {
         chats = findViewById(R.id.chats);
         chats.setLayoutManager(new LinearLayoutManager(this));
 
-        chatsAdapter = new ChatsAdapter(this, messages);
+        chatsAdapter = new ChatsAdapter(this, messages,user.getName());
         chats.setAdapter(chatsAdapter);
 
         final EditText editMsg = findViewById(R.id.et_msg);
@@ -111,12 +108,11 @@ public class ChatActivity extends AppCompatActivity {
 
     private void enterNewMessage(Message message, ChatRoom chatRoom){
         String key = mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).push().getKey();
-        Map<String, Object> postValues = chatRoom.toMap();
         mDatabaseRef.child("/chatrooms").child(chatRoom.getChatRoomId()).child("messages/"+key).setValue(message);
     }
 
     private void writeNewUser( String userId,String name, String email, List<String> interests) {
-        user = new User(userId,name,email, "", interests);
+        user = new User(userId,name,email, "https://i.pinimg.com/originals/86/17/f3/8617f3d63e9c58807430ee02d7b095f6.jpg", interests);
         String key = mDatabaseRef.child("users").push().getKey();
         user.setUserId(key);
         mDatabaseRef.child("/users").child(user.getName()).setValue(user);
