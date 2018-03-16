@@ -69,7 +69,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
     private void writeNewUser( String userId,String name, String email, List<String> interests) {
-        User user = new User(userId,name,email,interests);
+        User user = new User(userId,name,email, "", interests);
         String key = mDatabaseRef.child("users").push().getKey();
         mDatabaseRef.child("/users").child(key).setValue(user);
     }
