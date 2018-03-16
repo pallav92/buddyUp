@@ -1,5 +1,6 @@
 package com.yatra.buddyup.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -65,7 +66,8 @@ public class InterestListActivity extends AppCompatActivity {
 
     public void onClickOfSubmit(View view) {
         submitUserInterest(new ArrayList<String>());
-        finish();
+        Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
     }
 
     private void submitUserInterest( List<String> interests) {

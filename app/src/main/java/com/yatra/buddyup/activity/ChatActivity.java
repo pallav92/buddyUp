@@ -58,18 +58,24 @@ public class ChatActivity extends AppCompatActivity {
         interest.add("Cricket");
 
         writeNewUser("sumit.kumar@gmail.com","Sumit Kumar","sumit.kumar@gmail.com",interest);
-initializeUI();
+        initializeUI();
         chatRoom = new ChatRoom("xyz",null,null);
 
         mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 messages.clear();
+                usersList.clear();
                 for(DataSnapshot value : dataSnapshot.getChildren()) {
                     if(value != null) {
                         Iterator<DataSnapshot> it = value.getChildren().iterator();
                         while(it.hasNext()) {
-                            messages.add(it.next().getValue(Message.class));
+                            Message message = it.next().getValue(Message.class);
+                            if(!isUserPresent(message.getUser())) {
+                                usersList.add(message.getUser());
+                                chatUserAdapter.notifyDataSetChanged();
+                            }
+                            messages.add(message);
                         }
                     }
                 }
@@ -84,24 +90,17 @@ initializeUI();
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+    }
 
-        mDatabaseRef.child("users").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                usersList.clear();
-                for(DataSnapshot value : dataSnapshot.getChildren()) {
-                    if(value != null) {
-                        usersList.add(value.getValue(User.class));
-                    }
-                }
-                chatUserAdapter.notifyDataSetChanged();
+    private boolean isUserPresent(User user) {
+        boolean isPresent = false;
+        for(int i = 0; i < usersList.size(); i++) {
+            if(usersList.get(i).getUserId().equals(user.getUserId())) {
+                isPresent = true;
+                break;
             }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        }
+        return isPresent;
     }
 
     private void hideKeyboard() {
@@ -157,8 +156,8 @@ initializeUI();
 
     private void writeNewUser( String userId,String name, String email, List<String> interests) {
         user = new User(userId,name,email, "https://vignette.wikia.nocookie.net/batman/images/8/8f/Christian_Bale_as_The_Dark_Knight.jpg/revision/latest?cb=20140208170841", interests);
-        String key = mDatabaseRef.child("users").push().getKey();
-        user.setUserId(key);
+        /*String key = mDatabaseRef.child("users").push().getKey();
+        user.setUserId(key);*/
         mDatabaseRef.child("/users").child(user.getName()).setValue(user);
     }
 
