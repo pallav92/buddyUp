@@ -51,7 +51,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
         tvChatTitle = findViewById(R.id.tv_chat_title);
 
-String interestChoosen = getIntent().getStringExtra("interest")!=null?getIntent().getStringExtra("interest"):"xyz";
+        String interestChoosen = getIntent().getStringExtra("interest")!=null?getIntent().getStringExtra("interest"):"xyz";
         database = FirebaseDatabase.getInstance();
         mDatabaseRef = database.getReference("main");
 
@@ -61,9 +61,12 @@ String interestChoosen = getIntent().getStringExtra("interest")!=null?getIntent(
        /* interest.add("Books");
         interest.add("Cricket");*/
 
-        writeNewUser("pallav619@gmail.com","Pallav","pallav619@gmail.com",interest);
-initializeUI();
-        chatRoom = new ChatRoom("xyz",null,null);
+        writeNewUser("sumit.kumar@gmail.com","Sumit Kumar","sumit.kumar@gmail.com",interest);
+        initializeUI();
+        chatRoom = new ChatRoom(interestChoosen,null,null);
+
+        usersList.add(user);
+        chatUserAdapter.notifyDataSetChanged();
 
         mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -162,7 +165,7 @@ initializeUI();
     }
 
     private void writeNewUser(String userId, String name, String email, List<String> interests) {
-        user = new User(userId, name, email, "https://i.pinimg.com/originals/86/17/f3/8617f3d63e9c58807430ee02d7b095f6.jpg", interests);
+        user = new User(userId, name, email, "https://vignette.wikia.nocookie.net/batman/images/8/8f/Christian_Bale_as_The_Dark_Knight.jpg/revision/latest?cb=20140208170841", interests);
         /*String key = mDatabaseRef.child("users").push().getKey();
         user.setUserId(key);*/
         mDatabaseRef.child("/users").child(user.getName()).setValue(user);

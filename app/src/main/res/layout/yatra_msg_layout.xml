@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="24dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/msg"
+        android:padding="16dp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/black"
+        android:text="Color in Material Design is inspired by bold hues juxtaposed with muted environments, deep shadows, and bright highlights."
+        android:background="@drawable/rounded_dialog_shape">
+
+    </TextView>
+</LinearLayout>
