@@ -31,4 +31,11 @@
         <item name="android:windowExitAnimation">@anim/zoom_out</item>
     </style>
 
+    <style name="CardStyle" parent="CardView.Light">
+        <item name="cardElevation">2dp</item>
+        <item name="cardCornerRadius">6dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+
 </resources>

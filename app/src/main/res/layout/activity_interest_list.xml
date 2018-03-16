@@ -40,7 +40,7 @@
                 android:onClick="onClickOFInterest"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:tag="food">
+                android:tag="Food">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 android:onClick="onClickOFInterest"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:tag="books">
+                android:tag="Books">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                 android:onClick="onClickOFInterest"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:tag="movies">
+                android:tag="Movies">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"

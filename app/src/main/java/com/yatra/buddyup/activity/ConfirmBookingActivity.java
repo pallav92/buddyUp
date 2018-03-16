@@ -16,6 +16,11 @@ public class ConfirmBookingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confrim_booking);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -43,5 +48,4 @@ public class ConfirmBookingActivity extends AppCompatActivity {
             }
         }, 2000);
     }
-
 }
