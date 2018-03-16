@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.yatra.buddyup.R;
+import com.yatra.buddyup.adapter.ChatUserAdapter;
 import com.yatra.buddyup.adapter.ChatsAdapter;
 import com.yatra.buddyup.model.ChatRoom;
 import com.yatra.buddyup.model.Message;
@@ -35,9 +36,11 @@ public class ChatActivity extends AppCompatActivity {
     FirebaseDatabase database;
     private DatabaseReference mDatabaseRef;
     private List<Message> messages = new ArrayList<>();
+    private List<User> usersList = new ArrayList<>();
 
-    RecyclerView chats;
+    RecyclerView chats, users;
     ChatsAdapter chatsAdapter;
+    ChatUserAdapter chatUserAdapter;
     ChatRoom chatRoom;
     User user;
 
@@ -45,8 +48,6 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
-
-
 
         database = FirebaseDatabase.getInstance();
         mDatabaseRef = database.getReference("main");
@@ -83,6 +84,24 @@ public class ChatActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+
+        mDatabaseRef.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                usersList.clear();
+                for(DataSnapshot value : dataSnapshot.getChildren()) {
+                    if(value != null) {
+                        usersList.add(value.getValue(User.class));
+                    }
+                }
+                chatUserAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void hideKeyboard() {
@@ -103,9 +122,13 @@ public class ChatActivity extends AppCompatActivity {
     private void initializeUI() {
         chats = findViewById(R.id.chats);
         chats.setLayoutManager(new LinearLayoutManager(this));
-
         chatsAdapter = new ChatsAdapter(this, messages,user.getName());
         chats.setAdapter(chatsAdapter);
+
+        users = findViewById(R.id.users);
+        users.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
+        chatUserAdapter = new ChatUserAdapter(this, usersList);
+        users.setAdapter(chatUserAdapter);
 
         final EditText editMsg = findViewById(R.id.et_msg);
         final ImageView sendMsg = findViewById(R.id.send);

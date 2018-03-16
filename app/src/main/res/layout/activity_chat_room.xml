@@ -40,57 +40,12 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:gravity="center">
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:src="@drawable/girl1"
-                app:civ_border_width="1dp"
-                app:civ_border_color="@color/colorPrimaryDark"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:gravity="center">
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:src="@drawable/girl1"
-                app:civ_border_width="1dp"
-                app:civ_border_color="@color/colorPrimaryDark"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:gravity="center">
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:src="@drawable/girl1"
-                app:civ_border_width="1dp"
-                app:civ_border_color="@color/colorPrimaryDark"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:gravity="center">
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:src="@drawable/girl1"
-                app:civ_border_width="1dp"
-                app:civ_border_color="@color/colorPrimaryDark"/>
-        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:id="@+id/users">
+        </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 
