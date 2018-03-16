@@ -1,37 +1,24 @@
 package com.yatra.buddyup.activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.chyrta.onboarder.OnboarderActivity;
 import com.chyrta.onboarder.OnboarderPage;
-import com.ramotion.paperonboarding.PaperOnboardingFragment;
-import com.ramotion.paperonboarding.PaperOnboardingPage;
-import com.shashank.sony.fancywalkthroughlib.FancyWalkthroughActivity;
-import com.shashank.sony.fancywalkthroughlib.FancyWalkthroughCard;
 import com.yatra.buddyup.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import za.co.riggaroo.materialhelptutorial.TutorialItem;
-import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
-
-public class MainActivityNew extends OnboarderActivity {
+public class OnBoardingActivity extends OnboarderActivity {
 
     List<OnboarderPage> onboarderPages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main_new);
-
         onboarderPages = new ArrayList<OnboarderPage>();
 
         // Create your first page
