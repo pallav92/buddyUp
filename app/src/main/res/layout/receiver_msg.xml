@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="16dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="24dp"
+        android:paddingTop="16dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="sans-serif"
+        android:textSize="14sp"
+        android:text="Hello guys, How are you all Hello guys, How are you all Hello guys, How are you all Hello guys, How are you all"
+        android:textColor="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/img">
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/girl1"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/colorPrimaryDark"/>
+    </LinearLayout>
+
+</RelativeLayout>
