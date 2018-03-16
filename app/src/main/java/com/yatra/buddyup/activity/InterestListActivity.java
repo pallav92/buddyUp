@@ -44,7 +44,6 @@ public class InterestListActivity extends AppCompatActivity {
         } else {
             lastSelectedView.setBackground(ContextCompat.getDrawable(this, android.R.color.white));
             lastSelectedView.setElevation(0);
-            lastSelectedView.setTag(false);
             view.setBackground(ContextCompat.getDrawable(this, android.R.color.holo_blue_light));
             view.setElevation(300);
             lastSelectedView = view;
