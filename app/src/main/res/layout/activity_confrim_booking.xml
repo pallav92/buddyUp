@@ -9,7 +9,7 @@
     android:text="Congratulations \n Your Booking In Confirmed"
     android:textSize="24sp"
     android:layout_margin="30dp"
-    android:textColor="@android:color/holo_green_dark"
+    android:textColor="@color/black"
     xmlns:android="http://schemas.android.com/apk/res/android" />
     <ImageView
         android:layout_width="match_parent"

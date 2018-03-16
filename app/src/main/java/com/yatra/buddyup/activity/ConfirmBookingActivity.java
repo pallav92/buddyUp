@@ -1,5 +1,6 @@
 package com.yatra.buddyup.activity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,12 +19,12 @@ public class ConfirmBookingActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmBookingActivity.this,R.style.MyAlertDialogStyle);
-                builder.setTitle("Do you Want to meet new people and explore Activities in new City");
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmBookingActivity.this, R.style.MyAlertDialogStyle);
+                builder.setMessage("Do you want to meet new people and explore activities in new city");
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(ConfirmBookingActivity.this,InterestListActivity.class);
+                        Intent intent = new Intent(ConfirmBookingActivity.this, InterestListActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -33,9 +34,13 @@ public class ConfirmBookingActivity extends AppCompatActivity {
 
                     }
                 });
-               builder.show();
+
+                Dialog dialog = builder.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+                dialog.show();
             }
-        },2000);
+        }, 2000);
     }
 
 }
