@@ -44,6 +44,8 @@ public class ChatActivity extends AppCompatActivity {
 
         ChatRoom chatRoom = new ChatRoom("xyz",null,null);
 
+        enterNewMessage(new Message("Hi", new User("pallav619@gmail.com","Pallav","pallav619@gmail.com",interest),System.currentTimeMillis()),chatRoom);
+
         mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -63,8 +65,8 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void enterNewMessage(Message message, ChatRoom chatRoom){
-        mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).setValue(chatRoom);
-        mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).child("messages").setValue(message);
+        String key = mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).push().getKey();
+        mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).child("messages/"+key).setValue(message);
     }
 
 
