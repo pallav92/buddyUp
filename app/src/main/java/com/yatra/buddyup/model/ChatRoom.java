@@ -7,14 +7,17 @@ import java.util.List;
  */
 
 public class ChatRoom {
-    List<String> userIDList;
-    List<Message> messageList;
+
+    private String chatRoomId;
+    private List<String> userIDList;
+    private List<Message> messageList;
 
     public ChatRoom(){
 
     }
 
-    public ChatRoom(List<String> userIDList, List<Message> messageList) {
+    public ChatRoom(String chatRoomId, List<String> userIDList, List<Message> messageList) {
+        this.chatRoomId = chatRoomId;
         this.userIDList = userIDList;
         this.messageList = messageList;
     }
@@ -33,5 +36,13 @@ public class ChatRoom {
 
     public void setMessageList(List<Message> messageList) {
         this.messageList = messageList;
+    }
+
+    public String getChatRoomId() {
+        return chatRoomId;
+    }
+
+    public void setChatRoomId(String chatRoomId) {
+        this.chatRoomId = chatRoomId;
     }
 }
