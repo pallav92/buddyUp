@@ -65,7 +65,7 @@ public class ChatActivity extends AppCompatActivity {
        /* interest.add("Books");
         interest.add("Cricket");*/
 
-        writeNewUser("sumit.kumar@gmail.com", "Sumit Kumar", "sumit.kumar@gmail.com", interest);
+        writeNewUser(BuddyConstants.userName, BuddyConstants.userName, BuddyConstants.userEmail, interest);
         initializeUI();
         chatRoom = new ChatRoom(interestChoosen, null, null);
 
