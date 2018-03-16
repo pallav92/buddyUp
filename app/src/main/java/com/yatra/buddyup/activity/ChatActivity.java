@@ -1,11 +1,16 @@
 package com.yatra.buddyup.activity;
 
+import android.content.Context;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -52,11 +57,9 @@ public class ChatActivity extends AppCompatActivity {
         interest.add("Books");
         interest.add("Cricket");
 
-        writeNewUser("pallav619@gmail.com","Pallav","pallav619@gmail.com",interest);
+        writeNewUser("sumit.kumar@gmail.com","Sumit Kumar","sumit.kumar@gmail.com",interest);
 
         chatRoom = new ChatRoom("xyz",null,null);
-
-        enterNewMessage(new Message("Hi", new User("pallav619@gmail.com","Pallav","pallav619@gmail.com", "https://vignette.wikia.nocookie.net/batman/images/8/8f/Christian_Bale_as_The_Dark_Knight.jpg/revision/latest?cb=20140208170841", interest),System.currentTimeMillis(), true),chatRoom);
 
         mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -71,6 +74,9 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 }
                 chatsAdapter.notifyDataSetChanged();
+                hideKeyboard();
+                playNotificationSound();
+                chats.scrollToPosition(messages.size() - 1);
             }
 
             @Override
@@ -78,6 +84,21 @@ public class ChatActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    private void playNotificationSound(){
+        try {
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+            r.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initializeUI() {
@@ -114,7 +135,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void writeNewUser( String userId,String name, String email, List<String> interests) {
-        user = new User(userId,name,email, "", interests);
+        user = new User(userId,name,email, "https://vignette.wikia.nocookie.net/batman/images/8/8f/Christian_Bale_as_The_Dark_Knight.jpg/revision/latest?cb=20140208170841", interests);
         String key = mDatabaseRef.child("users").push().getKey();
         user.setUserId(key);
         mDatabaseRef.child("/users").child(user.getName()).setValue(user);
