@@ -90,14 +90,16 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 }
 
-                String msg = BuddyConstants.foodMessage;
+                String msg = "";
                 if (interestChoosen.toLowerCase().contains("food")) {
                     msg = BuddyConstants.foodMessage;
                 } else if (interestChoosen.toLowerCase().contains("books")) {
                     msg = BuddyConstants.booksMessage;
                 }
 
-                messages.add(0, new Message(msg, new User("", "YATRA", "", "", null), System.currentTimeMillis(), true));
+                if (!msg.isEmpty()) {
+                    messages.add(0, new Message(msg, new User("", "YATRA", "", "", null), System.currentTimeMillis(), true));
+                }
                 chatsAdapter.notifyDataSetChanged();
                 hideKeyboard();
                 playNotificationSound();
