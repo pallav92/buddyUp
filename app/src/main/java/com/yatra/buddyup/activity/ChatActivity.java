@@ -10,8 +10,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.yatra.buddyup.R;
+import com.yatra.buddyup.model.ChatRoom;
+import com.yatra.buddyup.model.Message;
 import com.yatra.buddyup.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
@@ -30,13 +33,20 @@ public class ChatActivity extends AppCompatActivity {
 
         mDatabaseRef.setValue("Hello, World!");
 
-//        writeNewUser("Pallav","Pallav",)
+        ArrayList<String> interest = new ArrayList<>();
+        interest.add("Travel");
+        interest.add("Books");
+        interest.add("Cricket");
+
+
+        writeNewUser("pallav619@gmail.com","Pallav","pallav619@gmail.com",interest);
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+
                 String value = dataSnapshot.getValue(String.class);
                 Log.d(TAG, "Value is: " + value);
             }
@@ -47,6 +57,10 @@ public class ChatActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+    }
+
+    private void enterNewMessage(Message message, ChatRoom chatRoom){
+
     }
 
 
