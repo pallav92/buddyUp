@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    style="@style/CardStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp">
+    android:layout_margin="10dp">
 
-    <TextView
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:id="@+id/msg"
-        android:paddingBottom="16dp"
-        android:paddingEnd="8dp"
-        android:paddingStart="24dp"
-        android:paddingTop="16dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="sans-serif"
-        android:textSize="14sp"
-        android:text="Hello guys, How are you all Hello guys, How are you all Hello guys, How are you all Hello guys, How are you all"
-        android:textColor="@color/gray" />
+        android:padding="5dp">
 
-    <LinearLayout
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true">
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <TextView
+            android:id="@+id/msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:fontFamily="sans-serif"
+            android:paddingBottom="16dp"
+            android:paddingEnd="25dp"
+            android:paddingStart="24dp"
+            android:text="Hello guys, How are you all Hello guys, How are you all Hello guys, How are you all Hello guys, How are you all"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <LinearLayout
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/img"
-            android:src="@drawable/girl1"
-            app:civ_border_width="1dp"
-            app:civ_border_color="@color/colorPrimaryDark"/>
-    </LinearLayout>
+            android:layout_alignParentEnd="true">
 
-</RelativeLayout>
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/girl1"
+                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_width="1dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
