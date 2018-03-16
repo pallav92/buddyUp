@@ -10,6 +10,15 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Please choose one interest below"
+            android:textSize="18sp" />
+
 
         <GridLayout
             android:layout_width="match_parent"
@@ -30,8 +39,8 @@
                 android:gravity="center"
                 android:onClick="onClickOFInterest"
                 android:orientation="vertical"
-
-                android:padding="10dp">
+                android:padding="10dp"
+                android:tag="food">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -55,11 +64,10 @@
                 android:layout_column="1"
                 android:layout_row="0"
                 android:gravity="center"
-
                 android:onClick="onClickOFInterest"
-
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:tag="books">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -84,9 +92,9 @@
                 android:layout_row="0"
                 android:gravity="center"
                 android:onClick="onClickOFInterest"
-
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:tag="movies">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -112,7 +120,8 @@
                 android:gravity="center"
                 android:onClick="onClickOFInterest"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:tag="Travel">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -136,9 +145,9 @@
                 android:layout_row="1"
                 android:gravity="center"
                 android:onClick="onClickOFInterest"
-
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:tag="politics">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -155,7 +164,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/OutDoor"
+                android:id="@+id/pets"
                 android:layout_width="130dp"
                 android:layout_height="160dp"
                 android:layout_column="2"
@@ -163,7 +172,8 @@
                 android:gravity="center"
                 android:onClick="onClickOFInterest"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:tag="pets">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -187,9 +197,9 @@
                 android:layout_row="2"
                 android:gravity="center"
                 android:onClick="onClickOFInterest"
-
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:tag="Health">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -213,9 +223,9 @@
                 android:layout_row="2"
                 android:gravity="center"
                 android:onClick="onClickOFInterest"
-
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:tag="event">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -239,7 +249,8 @@
                 android:layout_row="2"
                 android:onClick="onClickOFInterest"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:tag="adventure">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
