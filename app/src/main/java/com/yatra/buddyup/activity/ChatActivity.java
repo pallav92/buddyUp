@@ -32,6 +32,8 @@ public class ChatActivity extends AppCompatActivity {
 
     RecyclerView chats;
     ChatsAdapter chatsAdapter;
+    ChatRoom chatRoom;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class ChatActivity extends AppCompatActivity {
 
         writeNewUser("pallav619@gmail.com","Pallav","pallav619@gmail.com",interest);
 
-        ChatRoom chatRoom = new ChatRoom("xyz",null,null);
+        chatRoom = new ChatRoom("xyz",null,null);
 
         enterNewMessage(new Message("Hi", new User("pallav619@gmail.com","Pallav","pallav619@gmail.com", "https://vignette.wikia.nocookie.net/batman/images/8/8f/Christian_Bale_as_The_Dark_Knight.jpg/revision/latest?cb=20140208170841", interest),System.currentTimeMillis(), true),chatRoom);
 
@@ -81,28 +83,32 @@ public class ChatActivity extends AppCompatActivity {
         chats.setAdapter(chatsAdapter);
 
         final EditText editMsg = findViewById(R.id.et_msg);
-        ImageView sendMsg = findViewById(R.id.send);
+        final ImageView sendMsg = findViewById(R.id.send);
 
         sendMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String text = editMsg.getText().toString().trim();
                 if(!text.equals("")) {
-                    //Message message = new Message(text, );
-                    //sendMsgToServer(text);
+                    Message message = new Message(text, user, System.currentTimeMillis(), true);
+                    sendMsgToServer(message);
+                    editMsg.setText("");
                 }
             }
         });
     }
 
-    private void enterNewMessage(Message message, ChatRoom chatRoom){
-        String key = mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).push().getKey();
-        mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).child("messages/"+key).setValue(message);
+    private void sendMsgToServer(Message message) {
+        enterNewMessage(message, chatRoom);
     }
 
+    private void enterNewMessage(Message message, ChatRoom chatRoom){
+        String key = mDatabaseRef.child("chatrooms").child(chatRoom.getChatRoomId()).push().getKey();
+        mDatabaseRef.child("/chatrooms").child(chatRoom.getChatRoomId()).child("messages/"+key).setValue(message);
+    }
 
     private void writeNewUser( String userId,String name, String email, List<String> interests) {
-        User user = new User(userId,name,email, "", interests);
+        user = new User(userId,name,email, "", interests);
         String key = mDatabaseRef.child("users").push().getKey();
         mDatabaseRef.child("/users").child(key).setValue(user);
     }
