@@ -7,9 +7,26 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activity.ChatActivity">
+        android:supportsRtl="true">
+        <activity
+            android:name=".activity.OnBoardingActivityNew"
+            android:label="Hello Weird"
+            android:theme="@style/AppTheme">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
+        <activity android:name=".activity.MainActivityNew"
+            android:theme="@style/Theme.AppCompat.Light">
+
+        </activity>
+
+        <activity
+            android:name=".activity.ChatActivity"
+            android:theme="@style/Theme.AppCompat.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
