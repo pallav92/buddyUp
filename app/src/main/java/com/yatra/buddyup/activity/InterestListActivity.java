@@ -43,10 +43,10 @@ public class InterestListActivity extends AppCompatActivity {
                 .fadeinTextDuration(400)
                 .headingTvColor(Color.parseColor("#eb273f"))
                 .headingTvSize(32)
-                .headingTvText("Interest")
+                .headingTvText("Food")
                 .subHeadingTvColor(Color.parseColor("#ffffff"))
                 .subHeadingTvSize(16)
-                .subHeadingTvText("Please choose this if you want to meet with similar interest people.")
+                .subHeadingTvText("Please choose this if you want to meet with Food Lovers.")
                 .maskColor(Color.parseColor("#dc000000"))
                 .target(llFood)
                 .lineAnimDuration(400)
@@ -54,7 +54,7 @@ public class InterestListActivity extends AppCompatActivity {
                 .dismissOnTouch(true)
                 .dismissOnBackPress(true)
                 .enableDismissAfterShown(true)
-                .usageId("food") //UNIQUE ID
+                .usageId("food3") //UNIQUE ID
                 .show();
     }
 
