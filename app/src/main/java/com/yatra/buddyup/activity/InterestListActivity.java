@@ -54,7 +54,7 @@ public class InterestListActivity extends AppCompatActivity {
                 .dismissOnTouch(true)
                 .dismissOnBackPress(true)
                 .enableDismissAfterShown(true)
-                .usageId("food3") //UNIQUE ID
+                .usageId("food") //UNIQUE ID
                 .show();
     }
 
